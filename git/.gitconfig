@@ -1,0 +1,6 @@
+[user]
+	name = Javier Poremski
+	email = javier@poremski.se
+	signingkey = 0x0DDB55BE2C661452
+[commit]
+	gpgsign = true

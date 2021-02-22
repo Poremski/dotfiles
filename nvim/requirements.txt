@@ -1,0 +1,8 @@
+greenlet==1.0.0
+jedi==0.18.0
+msgpack==1.0.2
+neovim==0.2.6
+parso==0.8.1
+psutil==5.8.0
+setproctitle==1.2.2
+yapf==0.30.0
