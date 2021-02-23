@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+################################################################################
+# bootstrap
+#
+# This script is intended to set up a new Linux desktop machine with my dotfiles
+# and other development preferences.
+################################################################################
