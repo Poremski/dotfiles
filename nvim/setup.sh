@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Install nvim (and its dependencies: pip3, git), Python 3 and ctags (for tagbar)
-sudo apt update
-sudo apt install neovim python3 python3-pip python3-venv git curl exuberant-ctags -y
-
 # Install virtualenv to containerize dependencies
 python3 -m venv .config/nvim/env
 
