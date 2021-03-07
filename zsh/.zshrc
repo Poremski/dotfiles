@@ -105,3 +105,6 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export GOPATH=$HOME/go
+export GO111MODULE=on
+export PATH=$PATH:$GOPATH/bin
