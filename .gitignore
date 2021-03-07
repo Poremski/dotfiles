@@ -5,3 +5,6 @@ nvim/.config/nvim/env
 nvim/.config/nvim/plugged
 nvim/.local/share/nvim/shada
 nvim/.local/share/nvim/swap
+vscod/.config/Code/User/globalStorage
+vscod/.config/Code/User/snippets
+vscod/.config/Code/User/workspaceStorage
