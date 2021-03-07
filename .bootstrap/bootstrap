@@ -1,8 +1,75 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-################################################################################
-# bootstrap
-#
-# This script is intended to set up a new Linux desktop machine with my dotfiles
-# and other development preferences.
-################################################################################
+"""
+Bootstrap
+
+This script is intended to set up a new Linux desktop machine with my dotfiles
+and other development preferences.
+
+Author: Javier Poremski <javier@poremski.se> (https://www.poremski.se)
+Version: 1.0.0 (2021-03-07)
+Repo: https://github.com/poremski/dotfiles/blob/master/.bootstrap/bootstrap
+"""
+
+from subprocess import check_call, CalledProcessError
+
+import csv
+import os
+import platform
+
+class UnsupportedPlatform(Exception):
+    pass
+
+
+def run(data: list, command: str):
+    packages = []
+
+    for row in data:
+        if row['Install'].lower() != 'y':
+            continue
+        packages.append(row['Package'])
+
+    if (len(packages) == 0):
+        return
+
+    for package in packages:
+        try:
+            if command == 'install':
+                print(f'Installing {package}...')
+            elif command == 'remove':
+                print(f'Removing {package}...')
+            check_call(['sudo', 'apt-get', command, '-y', package],
+                stdout=open(os.devnull,'wb'))
+        except CalledProcessError as err:
+            print(err.output)
+
+
+def read_csv(filename: str):
+    with open(filename) as f:
+        file_data=csv.reader(f, delimiter=',', quotechar='"')
+        headers=next(file_data)
+        return [dict(zip(headers, i)) for i in file_data]
+
+def main():
+    if platform.system() != 'Linux':
+        raise UnsupportedPlatform(
+            'You need to run a Linux desktop machine.'
+        )
+
+    try:
+        print(f'Updating package list...')
+        check_call(['sudo', 'apt-get', 'update'],
+            stdout=open(os.devnull,'wb'))
+    except CalledProcessError as err:
+        print(err.output)
+
+    run(read_csv('install.csv'), 'install')
+    run(read_csv('uninstall.csv'), 'remove')
+
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as err:
+        print(err)

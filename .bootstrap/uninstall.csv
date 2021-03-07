@@ -1,1 +1,3 @@
 Install,Package,Description
+Y,totem,"Simple media player for the GNOME desktop based on GStreamer"
+Y,totem-plugins,"Plugins for the Totem media player"
