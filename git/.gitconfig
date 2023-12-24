@@ -1,0 +1,12 @@
+[user]
+	name = Javier Poremski
+	email = javier@poremski.se
+	signingkey = D85178CF97840B3927A80750FC7EE837A78AC7BD
+[init]
+	defaultBranch = master
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
+[push]
+	default = current

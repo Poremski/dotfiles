@@ -6,6 +6,7 @@ git submodule update
 
 # folders that should be installed by all users including the root user
 base=(
+    git
     nvim
 )
 
