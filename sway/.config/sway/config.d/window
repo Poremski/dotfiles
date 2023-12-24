@@ -1,0 +1,8 @@
+for_window {
+  # Inhibit Idle when ANY application is fullscreen
+  [class="^.*"] inhibit_idle fullscreen
+  [app_id="^.*"] inhibit_idle full
+  # Custom Window Treatment
+  [app_id="org.clementine-player.clementine"] floating enable
+  [app_id="pavucontrol"] floating enable
+}

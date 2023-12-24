@@ -8,7 +8,9 @@ git submodule update
 base=()
 
 # folders that should be installed by the local user
-useronly=()
+useronly=(
+    sway
+)
 
 # run the stow command for the passed in directory ($2) in location $1
 stowit() {

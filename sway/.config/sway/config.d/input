@@ -1,0 +1,20 @@
+input 1:1:AT_Translated_Set_2_keyboard {
+  xkb_layout us,se
+  xkb_variant intl,
+  xkb_model pc105
+  xkb_options grp:ctrl_shift_toggle
+}
+
+input 1739:30383:DELL07E6:00_06CB:76AF_Touchpad {
+  accel_profile adaptive
+  dwt on
+  middle_emulation enabled
+  natural_scroll enabled
+  tap disabled
+  tap_button_map lrm
+  click_method clickfinger
+}
+
+input "1267:9454:ELAN24EE:00_04F3:24EE" {
+  map_to_output eDP-1
+}
