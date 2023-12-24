@@ -5,7 +5,9 @@ git submodule init
 git submodule update
 
 # folders that should be installed by all users including the root user
-base=()
+base=(
+    nvim
+)
 
 # folders that should be installed by the local user
 useronly=(
