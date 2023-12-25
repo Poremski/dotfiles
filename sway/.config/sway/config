@@ -1,3 +1,6 @@
+# Include theme settings
+include ./theme
+
 # Include all configuration files
 include ./config.d/*
 

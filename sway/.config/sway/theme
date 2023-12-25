@@ -1,0 +1,23 @@
+font                      pango:monospace 16px
+default_border            pixel 2
+titlebar_border_thickness 2
+
+gaps top    2
+gaps bottom 2
+gaps left   2
+gaps right  2
+gaps inner  5
+
+# window decorations
+# class                 border	    background	text        indicator   child_border
+client.focused          #A4B9EF     #332E41     #E5B4E2     #DADAE8     #A4B9EF
+client.focused_inactive #A4B9EF     #332E41     #E5B4E2     #DADAE8     #A4B9EF
+client.unfocused        #A4B9EF     #1E1E28     #DADAE8     #DADAE8     #575268
+client.urgent           #A4B9EF     #575268     #EBDDAA     #DADAE8     #EBDDAA
+
+exec_always $HOME/.local/bin/import-gsettings.sh \
+	gtk-theme:gtk-theme-name \
+	icon-theme:gtk-icon-theme-name \
+	cursor-theme:gtk-cursor-theme-name\
+	font-name:gtk-font-name
+
