@@ -12,34 +12,46 @@
 
   outputs = { nixpkgs, home-manager, ... }:
   let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs { inherit system; };
-    mkHome = user: host: home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    hosts = import ./lib/hosts.nix;
+    defaultSystem = "x86_64-linux";
+    pkgs = import nixpkgs { system = defaultSystem; };
+    mkHome = host: meta:
+      let
+        hostPkgs = import nixpkgs { system = meta.system; };
+      in
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = hostPkgs;
 
-      modules = [
-        (./. + "/home/${user}/${host}.nix")
-      ];
-    };
-    mkNixos = host: nixpkgs.lib.nixosSystem {
-      inherit system;
+        modules = [
+          (./. + "/home/${meta.user}/${host}.nix")
+        ];
+      };
+    mkNixos = host: meta: nixpkgs.lib.nixosSystem {
+      system = meta.system;
       specialArgs = {
         inherit home-manager;
+        hostMeta = meta // { name = host; };
       };
 
       modules = [
         (./. + "/hosts/${host}")
       ];
     };
+    homeConfigurations = nixpkgs.lib.mapAttrs'
+      (host: meta: {
+        name = "${meta.user}-${host}";
+        value = mkHome host meta;
+      })
+      hosts;
+    nixosConfigurations = nixpkgs.lib.mapAttrs mkNixos hosts;
   in
   {
-    homeConfigurations.javier-poremski = mkHome "javier" "poremski";
-    nixosConfigurations.poremski = mkNixos "poremski";
+    inherit homeConfigurations nixosConfigurations;
 
-    packages.${system}.home-manager =
-          home-manager.packages.${system}.home-manager;
+    packages.${defaultSystem}.home-manager =
+          home-manager.packages.${defaultSystem}.home-manager;
 
-    devShells.${system}.default = pkgs.mkShell {
+    devShells.${defaultSystem}.default = pkgs.mkShell {
       buildInputs = [
         pkgs.git
         pkgs.neovim

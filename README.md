@@ -17,6 +17,7 @@ home-manager switch --flake ~/.dotfiles#javier-poremski
 
 Current structure:
 
+- `lib/hosts.nix`: host metadata used to generate flake outputs
 - `home/javier/common.nix`: shared Home Manager config for the user
 - `home/javier/poremski.nix`: host-specific Home Manager config
 - `hosts/poremski/default.nix`: future NixOS host config for `poremski`
@@ -27,3 +28,9 @@ Available flake targets:
 home-manager switch --flake ~/.dotfiles#javier-poremski
 nixos-rebuild switch --flake ~/.dotfiles#poremski
 ```
+
+To add another host later:
+
+1. Add a new entry in `lib/hosts.nix`
+2. Create `home/<user>/<host>.nix`
+3. Create `hosts/<host>/default.nix` when that machine moves to NixOS
