@@ -22,7 +22,7 @@ Current structure:
 - `profiles/desktop.nix`: desktop-oriented profile layered on top of `base`
 - `home/javier/common.nix`: shared Home Manager config for the user
 - `home/javier/poremski.nix`: host-specific Home Manager config
-- `modules/apps`: desktop applications shared across hosts, such as Firefox and Thunderbird
+- `modules/apps`: desktop applications shared across hosts, such as Firefox
 - `modules/cli`: CLI tools and terminal programs shared across hosts
 - `modules/security`: shared security-related tooling such as GPG agent integration
 - `modules/shell`: shell configuration shared across hosts
