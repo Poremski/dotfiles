@@ -9,8 +9,11 @@
     '';
 
     shellAliases = {
+      g = "git";
+      v = "nvim";
       ll = "ls -la";
       hm = "home-manager";
+      hms = "home-manager switch";
     };
   };
 }
