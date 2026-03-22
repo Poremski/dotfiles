@@ -22,6 +22,7 @@ Current structure:
 - `profiles/desktop.nix`: desktop-oriented profile layered on top of `base`
 - `home/javier/common.nix`: shared Home Manager config for the user
 - `home/javier/poremski.nix`: host-specific Home Manager config
+- `modules/apps`: desktop applications shared across hosts
 - `modules/cli`: CLI tools and terminal programs shared across hosts
 - `modules/shell`: shell configuration shared across hosts
 - `modules/editors`: editor configuration shared across hosts
