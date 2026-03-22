@@ -11,7 +11,7 @@
     shellAliases = {
       ll = "ls -la";
       hm = "home-manager";
-      rebuild = "home-manager switch --flake ~/.dotfiles#jappe";
+      rebuild = "home-manager switch --flake ~/.dotfiles#javier-poremski";
     };
   };
 }

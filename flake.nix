@@ -1,5 +1,5 @@
 {
-  description = "Jappe dotfiles";
+  description = "Javier's Home Manager and NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -16,12 +16,12 @@
     pkgs = import nixpkgs { inherit system; };
   in
   {
-    # Home Manager config
-    homeConfigurations.jappe = home-manager.lib.homeManagerConfiguration {
+    # Home Manager config for javier on the poremski host.
+    homeConfigurations.javier-poremski = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
-        ./hosts/jappe.nix
+        ./home/javier/poremski.nix
       ];
     };
 

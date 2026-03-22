@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    ../modules/git.nix
-    ../modules/fish.nix
-    ../modules/neovim.nix
-    ../modules/dev.nix
+    ../../modules/git.nix
+    ../../modules/fish.nix
+    ../../modules/neovim.nix
+    ../../modules/dev.nix
   ];
 
   home.username = "javier";
