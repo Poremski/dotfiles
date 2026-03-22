@@ -25,6 +25,7 @@ Current structure:
 - `modules/cli`: CLI tools and terminal programs shared across hosts
 - `modules/shell`: shell configuration shared across hosts
 - `modules/editors`: editor configuration shared across hosts
+- `modules/nixos/base.nix`: shared NixOS base that wires user, profiles and Home Manager together
 - `hosts/poremski/default.nix`: future NixOS host config for `poremski`
 
 Available flake targets:
@@ -41,3 +42,4 @@ To add another host later:
 3. Create `hosts/<host>/default.nix` when that machine moves to NixOS
 
 Profiles let multiple hosts share the same role without duplicating imports.
+The shared NixOS base does the same for system-level Home Manager wiring.
