@@ -1,5 +1,10 @@
 { home-manager, hostMeta, ... }:
 
+let
+  profileModules = builtins.map
+    (profile: ../../. + "/profiles/${profile}.nix")
+    (hostMeta.profiles or [ ]);
+in
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -16,8 +21,16 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-  home-manager.users.${hostMeta.user} =
-    import (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix");
+  home-manager.extraSpecialArgs = {
+    inherit hostMeta;
+  };
+  home-manager.users.${hostMeta.user} = {
+    imports = [
+      (../../. + "/home/${hostMeta.user}/common.nix")
+    ] ++ profileModules ++ [
+      (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix")
+    ];
+  };
 
   system.stateVersion = "23.11";
 }

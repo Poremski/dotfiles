@@ -18,11 +18,19 @@
     mkHome = host: meta:
       let
         hostPkgs = import nixpkgs { system = meta.system; };
+        profileModules = builtins.map
+          (profile: ./. + "/profiles/${profile}.nix")
+          (meta.profiles or [ ]);
       in
       home-manager.lib.homeManagerConfiguration {
         pkgs = hostPkgs;
+        extraSpecialArgs = {
+          hostMeta = meta // { name = host; };
+        };
 
         modules = [
+          (./. + "/home/${meta.user}/common.nix")
+        ] ++ profileModules ++ [
           (./. + "/home/${meta.user}/${host}.nix")
         ];
       };

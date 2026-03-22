@@ -1,16 +1,12 @@
-{ ... }:
+{ hostMeta, ... }:
 
 {
-  imports = [
-    ./common.nix
-  ];
-
   home.sessionVariables = {
-    DOTFILES_HOST = "poremski";
-    DOTFILES_FQDN = "poremski.home.arpa";
+    DOTFILES_HOST = hostMeta.name;
+    DOTFILES_FQDN = "${hostMeta.name}.${hostMeta.domain}";
   };
 
   programs.fish.shellAliases = {
-    rebuild = "home-manager switch --flake ~/.dotfiles#javier-poremski";
+    rebuild = "home-manager switch --flake ~/.dotfiles#${hostMeta.user}-${hostMeta.name}";
   };
 }
