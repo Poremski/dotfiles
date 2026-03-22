@@ -24,6 +24,7 @@ Current structure:
 - `home/javier/poremski.nix`: host-specific Home Manager config
 - `modules/apps`: desktop applications shared across hosts, such as Firefox and Thunderbird
 - `modules/cli`: CLI tools and terminal programs shared across hosts
+- `modules/security`: shared security-related tooling such as GPG agent integration
 - `modules/shell`: shell configuration shared across hosts
 - `modules/editors`: editor configuration shared across hosts
 - `modules/nixos/base.nix`: shared NixOS base that wires user, profiles and Home Manager together
