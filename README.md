@@ -20,6 +20,9 @@ Current structure:
 - `lib/hosts.nix`: host metadata used to generate flake outputs
 - `home/javier/common.nix`: shared Home Manager config for the user
 - `home/javier/poremski.nix`: host-specific Home Manager config
+- `modules/cli`: CLI tools and terminal programs shared across hosts
+- `modules/shell`: shell configuration shared across hosts
+- `modules/editors`: editor configuration shared across hosts
 - `hosts/poremski/default.nix`: future NixOS host config for `poremski`
 
 Available flake targets:
