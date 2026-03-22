@@ -3,6 +3,7 @@ local map = vim.keymap.set
 map("n", "<leader>w", "<cmd>write<cr>", { desc = "Write file" })
 map("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit window" })
 map("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
+map("n", "<leader>x", "<cmd>bdelete<cr>", { desc = "Close buffer" })
 
 map("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Focus lower window" })
