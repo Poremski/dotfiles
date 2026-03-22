@@ -14,16 +14,27 @@
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
-  in
-  {
-    # Home Manager config for javier on the poremski host.
-    homeConfigurations.javier-poremski = home-manager.lib.homeManagerConfiguration {
+    mkHome = user: host: home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
-        ./home/javier/poremski.nix
+        (./. + "/home/${user}/${host}.nix")
       ];
     };
+    mkNixos = host: nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit home-manager;
+      };
+
+      modules = [
+        (./. + "/hosts/${host}")
+      ];
+    };
+  in
+  {
+    homeConfigurations.javier-poremski = mkHome "javier" "poremski";
+    nixosConfigurations.poremski = mkNixos "poremski";
 
     packages.${system}.home-manager =
           home-manager.packages.${system}.home-manager;
