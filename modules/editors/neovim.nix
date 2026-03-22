@@ -8,6 +8,7 @@
     vimAlias = true;
     extraPackages = with pkgs; [
       fd
+      nixd
       lua-language-server
       ripgrep
       stylua

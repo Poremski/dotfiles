@@ -44,6 +44,10 @@ return {
           },
         },
       })
+
+      lspconfig.nixd.setup({
+        capabilities = capabilities,
+      })
     end,
   },
 }
