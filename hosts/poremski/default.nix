@@ -9,6 +9,7 @@
     ../../modules/nixos/networking.nix
     ../../modules/nixos/audio.nix
     ../../modules/nixos/laptop.nix
+    ../../modules/nixos/printing.nix
     ../../modules/nixos/desktop/plasma.nix
   ];
 
