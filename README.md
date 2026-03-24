@@ -31,6 +31,8 @@ Current structure:
 - `modules/nixos/system.nix`: NixOS-wide defaults such as Nix settings and core packages
 - `modules/nixos/locale.nix`: timezone, locale and console keymap
 - `modules/nixos/networking.nix`: baseline networking and SSH settings
+- `modules/nixos/audio.nix`: PipeWire and related audio services
+- `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
 - `hosts/poremski/default.nix`: future NixOS host config for `poremski`
 
 Available flake targets:

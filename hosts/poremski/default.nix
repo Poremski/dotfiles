@@ -6,6 +6,8 @@
     ../../modules/nixos/system.nix
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
+    ../../modules/nixos/audio.nix
+    ../../modules/nixos/desktop/plasma.nix
   ];
 
   system.stateVersion = "25.11";
