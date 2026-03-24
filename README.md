@@ -32,6 +32,7 @@ Current structure:
 - `modules/nixos/locale.nix`: timezone, locale and console keymap
 - `modules/nixos/networking.nix`: baseline networking and SSH settings
 - `modules/nixos/audio.nix`: PipeWire and related audio services
+- `modules/nixos/laptop.nix`: laptop-oriented services such as power, fwupd, bluetooth and thunderbolt
 - `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
 - `hosts/poremski/default.nix`: future NixOS host config for `poremski`
 

@@ -7,6 +7,7 @@
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/audio.nix
+    ../../modules/nixos/laptop.nix
     ../../modules/nixos/desktop/plasma.nix
   ];
 
