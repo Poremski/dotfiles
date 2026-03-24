@@ -28,6 +28,8 @@ Current structure:
 - `modules/shell`: shell configuration shared across hosts
 - `modules/editors`: editor configuration shared across hosts
 - `modules/nixos/base.nix`: shared NixOS base that wires user, profiles and Home Manager together
+- `modules/nixos/boot.nix`: bootloader, initrd and encrypted boot prerequisites
+- `modules/nixos/filesystems.nix`: root, boot and Btrfs subvolume mounts
 - `modules/nixos/system.nix`: NixOS-wide defaults such as Nix settings and core packages
 - `modules/nixos/locale.nix`: timezone, locale and console keymap
 - `modules/nixos/networking.nix`: baseline networking and SSH settings
