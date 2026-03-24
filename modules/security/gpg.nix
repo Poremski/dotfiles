@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.gpg = {
@@ -53,4 +53,8 @@
       "7A4F2E1CAF436D00CC46DE5B022FACD79B10C33A"
     ];
   };
+
+  programs.fish.interactiveShellInit = ''
+    set -gx SSH_AUTH_SOCK (${config.programs.gpg.package}/bin/gpgconf --list-dirs agent-ssh-socket)
+  '';
 }
