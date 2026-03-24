@@ -2,9 +2,8 @@
 
 {
   imports = [
+    ./hardware-configuration.nix
     ../../modules/nixos/base.nix
-    ../../modules/nixos/boot.nix
-    ../../modules/nixos/filesystems.nix
     ../../modules/nixos/system.nix
     ../../modules/nixos/locale.nix
     ../../modules/nixos/networking.nix
