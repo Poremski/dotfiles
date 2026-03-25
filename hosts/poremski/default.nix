@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -14,6 +14,22 @@
     ../../modules/nixos/printing.nix
     ../../modules/nixos/desktop/plasma.nix
   ];
+
+  swapDevices = lib.mkForce [
+    {
+      device = "/dev/mapper/swap";
+      discardPolicy = "once";
+      encrypted = {
+        enable = true;
+        blkDev = "/dev/disk/by-uuid/bc4b7c5e-f234-48cd-9edf-01d7ea06bff9";
+        label = "swap";
+      };
+    }
+  ];
+
+  systemd.sleep.settings.Sleep = {
+    AllowHibernation = "no";
+  };
 
   system.stateVersion = "25.11";
 }
