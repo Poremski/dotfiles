@@ -54,7 +54,7 @@
     ];
   };
 
-  programs.fish.interactiveShellInit = ''
-    set -gx SSH_AUTH_SOCK (${config.programs.gpg.package}/bin/gpgconf --list-dirs agent-ssh-socket)
-  '';
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh";
+  };
 }
