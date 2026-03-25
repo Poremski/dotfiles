@@ -1,0 +1,20 @@
+{ pkgs, ... }:
+
+{
+  fonts.packages = with pkgs; [
+    inter
+    jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+  ];
+
+  fonts.fontconfig = {
+    defaultFonts = {
+      sansSerif = [ "Inter" "Noto Sans" ];
+      serif = [ "Noto Serif" ];
+      monospace = [ "JetBrains Mono" "Noto Sans Mono" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
+}
