@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-home-manager switch --flake ~/.dotfiles#javier-poremski
+sudo nixos-rebuild switch --flake ~/.dotfiles#poremski

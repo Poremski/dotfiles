@@ -1,7 +1,6 @@
 # Nix configuration
 
-This repository currently manages Home Manager on Arch Linux and is structured
-to make a later move to NixOS easier.
+This repository manages NixOS and Home Manager through a single flake.
 
 Current naming:
 
@@ -9,10 +8,10 @@ Current naming:
 - host: `poremski`
 - fqdn: `poremski.home.arpa`
 
-Main Home Manager target:
+Main host target:
 
 ```bash
-home-manager switch --flake ~/.dotfiles#javier-poremski
+sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
 ```
 
 Current structure:
@@ -35,21 +34,21 @@ Current structure:
 - `modules/nixos/laptop.nix`: laptop-oriented services such as power, fwupd, bluetooth and thunderbolt
 - `modules/nixos/printing.nix`: CUPS, mDNS discovery and printer drivers
 - `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
-- `hosts/poremski/default.nix`: future NixOS host config for `poremski`
+- `hosts/poremski/default.nix`: NixOS host config for `poremski`
 - `hosts/poremski/hardware-configuration.nix`: host-specific boot, disk and filesystem layout
 
 Available flake targets:
 
 ```bash
+sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
 home-manager switch --flake ~/.dotfiles#javier-poremski
-nixos-rebuild switch --flake ~/.dotfiles#poremski
 ```
 
 To add another host later:
 
 1. Add a new entry in `lib/hosts.nix`
 2. Create `home/<user>/<host>.nix`
-3. Create `hosts/<host>/default.nix` when that machine moves to NixOS
+3. Create `hosts/<host>/default.nix` for that machine's NixOS configuration
 
 Profiles let multiple hosts share the same role without duplicating imports.
 The shared NixOS base does the same for system-level Home Manager wiring.

@@ -7,6 +7,6 @@
   };
 
   programs.fish.shellAliases = {
-    rebuild = "home-manager switch --flake ~/.dotfiles#${hostMeta.user}-${hostMeta.name}";
+    rebuild = "sudo nixos-rebuild switch --flake ~/.dotfiles#${hostMeta.name}";
   };
 }
