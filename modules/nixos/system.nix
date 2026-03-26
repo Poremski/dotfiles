@@ -2,6 +2,7 @@
 
 {
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   nix.settings = {
@@ -14,7 +15,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 14d";
+    options = "--delete-older-than 30d";
   };
 
   nixpkgs.config.allowUnfree = true;
