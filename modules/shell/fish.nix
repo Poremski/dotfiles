@@ -4,10 +4,6 @@
   programs.fish = {
     enable = true;
 
-    shellInit = ''
-      nix-your-shell fish | source
-    '';
-
     shellAliases = {
       g = "git";
       v = "nvim";
