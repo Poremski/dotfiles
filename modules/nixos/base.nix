@@ -1,4 +1,4 @@
-{ home-manager, hostMeta, ... }:
+{ home-manager, hostMeta, pkgs, ... }:
 
 let
   profileModules = builtins.map
@@ -17,7 +17,10 @@ in
     isNormalUser = true;
     home = "/home/${hostMeta.user}";
     extraGroups = [ "wheel" ];
+    shell = pkgs.fish;
   };
+
+  programs.fish.enable = true;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
