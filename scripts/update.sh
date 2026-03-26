@@ -4,5 +4,5 @@ set -euo pipefail
 
 flake_dir="${HOME}/.dotfiles"
 
-nix flake update "${flake_dir}"
+nix flake update --flake "${flake_dir}"
 "${flake_dir}/scripts/rebuild.sh"
