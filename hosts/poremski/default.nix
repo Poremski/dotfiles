@@ -8,6 +8,7 @@
     ../../modules/nixos/1password.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/locale.nix
+    ../../modules/nixos/mullvad-vpn.nix
     ../../modules/nixos/networking.nix
     ../../modules/nixos/audio.nix
     ../../modules/nixos/laptop.nix
