@@ -8,7 +8,9 @@
     mutableUserKeymaps = false;
 
     extraPackages = with pkgs; [
+      nil
       nixd
+      package-version-server
       lua-language-server
       ripgrep
       fd
