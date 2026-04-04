@@ -14,6 +14,16 @@ Main host target:
 sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
 ```
 
+Helper commands:
+
+```bash
+~/.dotfiles/bin/rebuild
+~/.dotfiles/bin/update
+```
+
+`bin/rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
+`bin/update` updates flake inputs and then runs `bin/rebuild`.
+
 Current structure:
 
 - `lib/hosts.nix`: host metadata used to generate flake outputs
@@ -26,6 +36,8 @@ Current structure:
 - `modules/security`: shared security-related tooling such as GPG agent integration
 - `modules/shell`: shell configuration shared across hosts
 - `modules/editors`: editor configuration shared across hosts
+- `bin/rebuild`: host-aware rebuild helper that runs `nix flake check` before switching
+- `bin/update`: flake update helper that rebuilds after updating inputs
 - `modules/nixos/base.nix`: shared NixOS base that wires user, profiles and Home Manager together
 - `modules/nixos/system.nix`: NixOS-wide defaults such as Nix settings and core packages
 - `modules/nixos/locale.nix`: timezone, locale and console keymap
@@ -43,6 +55,12 @@ Available flake targets:
 sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
 home-manager switch --flake ~/.dotfiles#javier-poremski
 ```
+
+Editor integration:
+
+- Zed is configured declaratively through Home Manager
+- Codex is exposed to Zed through `codex-acp`
+- the flake includes `llm-agents` as an input for that workflow
 
 To add another host later:
 
