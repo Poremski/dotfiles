@@ -22,7 +22,7 @@
       discardPolicy = "once";
       encrypted = {
         enable = true;
-        blkDev = "/dev/disk/by-uuid/bc4b7c5e-f234-48cd-9edf-01d7ea06bff9";
+        blkDev = "/dev/disk/by-uuid/luks-c9fbf459-1737-46ef-95ca-ac8ac9d7ecd4";
         label = "swap";
       };
     }
