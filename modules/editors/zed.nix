@@ -34,10 +34,11 @@
       telemetry = {
         metrics = false;
       };
-      assistant = {
-        enable = true;
-        provider = "zed.dev";
-        model = "codex";
+      agent_servers = {
+        Codex = {
+          command = "codex-acp";
+          args = [ ];
+        };
       };
     };
   };

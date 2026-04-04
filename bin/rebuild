@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+flake_dir="${HOME}/.dotfiles"
+hostname_short="$(hostname -s)"
+
+mapfile -t flake_hosts < <(find "${flake_dir}/hosts" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
+
+if ((${#flake_hosts[@]} == 0)); then
+  printf 'No NixOS hosts found under %s/hosts\n' "${flake_dir}" >&2
+  exit 1
+fi
+
+host=""
+
+for candidate in "${flake_hosts[@]}"; do
+  if [[ "${candidate}" == "${hostname_short}" ]]; then
+    host="${candidate}"
+    break
+  fi
+done
+
+if [[ -z "${host}" && ${#flake_hosts[@]} -eq 1 ]]; then
+  host="${flake_hosts[0]}"
+fi
+
+if [[ -z "${host}" ]]; then
+  printf 'Hostname %q does not match any flake host. Available hosts: %s\n' \
+    "${hostname_short}" \
+    "$(printf '%s ' "${flake_hosts[@]}")" >&2
+  printf 'Set the system hostname to match a flake host, or update %s to select one explicitly.\n' \
+    "${BASH_SOURCE[0]}" >&2
+  exit 1
+fi
+
+nix flake check "${flake_dir}"
+sudo nixos-rebuild switch --flake "${flake_dir}#${host}"
