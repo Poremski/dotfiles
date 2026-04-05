@@ -48,6 +48,42 @@ return {
       lspconfig.nixd.setup({
         capabilities = capabilities,
       })
+
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.phpactor.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.jdtls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.html.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.jsonls.setup({
+        capabilities = capabilities,
+      })
+
+      lspconfig.taplo.setup({
+        capabilities = capabilities,
+      })
     end,
   },
 }

@@ -11,10 +11,19 @@
     ];
     extraPackages = with pkgs; [
       fd
+      gopls
+      jdt-language-server
       nixd
       lua-language-server
+      phpactor
+      pyright
       ripgrep
+      rust-analyzer
       stylua
+      taplo
+      typescript
+      typescript-language-server
+      vscode-langservers-extracted
     ];
   };
 
