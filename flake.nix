@@ -21,7 +21,7 @@
       mkHome =
         host: meta:
         let
-          hostPkgs = import nixpkgs { system = meta.system; };
+          hostPkgs = import nixpkgs { inherit (meta) system; };
           profileModules = builtins.map (profile: ./. + "/profiles/${profile}.nix") (meta.profiles or [ ]);
         in
         home-manager.lib.homeManagerConfiguration {
@@ -43,7 +43,7 @@
       mkNixos =
         host: meta:
         nixpkgs.lib.nixosSystem {
-          system = meta.system;
+          inherit (meta) system;
           specialArgs = {
             inherit home-manager;
             hostMeta = meta // {

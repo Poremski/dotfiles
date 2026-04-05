@@ -1,9 +1,10 @@
-{ ... }:
+_:
 
 {
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.enable = true;
+  };
 
   services.openssh.enable = true;
-
-  networking.firewall.enable = true;
 }

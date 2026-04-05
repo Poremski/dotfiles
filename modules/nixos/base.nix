@@ -22,17 +22,19 @@ in
 
   programs.fish.enable = true;
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "hm-backup";
-  home-manager.extraSpecialArgs = {
-    inherit hostMeta;
-  };
-  home-manager.users.${hostMeta.user} = {
-    imports = [
-      (../../. + "/home/${hostMeta.user}/common.nix")
-    ] ++ profileModules ++ [
-      (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix")
-    ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "hm-backup";
+    extraSpecialArgs = {
+      inherit hostMeta;
+    };
+    users.${hostMeta.user} = {
+      imports = [
+        (../../. + "/home/${hostMeta.user}/common.nix")
+      ] ++ profileModules ++ [
+        (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix")
+      ];
+    };
   };
 }

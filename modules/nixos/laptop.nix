@@ -1,12 +1,14 @@
-{ ... }:
+_:
 
 {
   powerManagement.enable = true;
 
-  services.thermald.enable = true;
-  services.fwupd.enable = true;
-  services.fprintd.enable = true;
-  services.hardware.bolt.enable = true;
+  services = {
+    thermald.enable = true;
+    fwupd.enable = true;
+    fprintd.enable = true;
+    hardware.bolt.enable = true;
+  };
 
   hardware.bluetooth.enable = true;
 }

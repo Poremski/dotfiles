@@ -1,13 +1,16 @@
-{ ... }:
+_:
 
 {
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  services.xserver.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
+  services = {
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "altgr-intl";
+      };
+    };
   };
 
   console.useXkbConfig = true;
