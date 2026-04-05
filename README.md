@@ -1,5 +1,7 @@
 # Nix configuration
 
+[![CI](https://github.com/Poremski/nix-config/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Poremski/nix-config/actions/workflows/ci.yml)
+
 This repository manages NixOS and Home Manager through a single flake.
 
 Current naming:
