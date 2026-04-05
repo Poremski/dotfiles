@@ -25,6 +25,24 @@ jobs:
       - name: Run flake check
         run: nix flake check
 
+  fmt-check:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+        with:
+          determinate: false
+
+      - name: Check formatting
+        run: nix develop -c ./bin/fmt --check
+
   lint:
     runs-on: self-hosted
     permissions:
