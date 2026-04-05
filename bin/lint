@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-flake_dir="${HOME}/.nix-config"
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+flake_dir="$(cd -- "${script_dir}/.." && pwd)"
 
 statix check "${flake_dir}"
 deadnix "${flake_dir}"
