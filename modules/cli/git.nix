@@ -11,6 +11,7 @@
     };
 
     settings = {
+      core.editor = "nvim";
       user.name = "Javier Poremski";
       user.email = "javier@poremski.se";
       init.defaultBranch = "master";
