@@ -3,8 +3,13 @@
     pkgs.alejandra
     pkgs.deadnix
     pkgs.htop
+    pkgs.jq
+    pkgs.shellcheck
+    pkgs.shfmt
     pkgs.statix
     pkgs.tmux
+    pkgs.tree
+    pkgs.yq-go
   ];
 
   home.file.".tmux.conf".text = ''

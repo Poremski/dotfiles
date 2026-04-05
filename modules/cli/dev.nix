@@ -13,9 +13,12 @@
       pkgs.jdk
       pkgs.lua5_1
       pkgs.luarocks
+      pkgs.prettier
       pkgs.nodejs
       pkgs.php
       pkgs.python3
+      pkgs.python3Packages.black
+      pkgs.ruff
       pkgs.rustPackages.clippy
       pkgs.rustPackages.rustfmt
       pkgs.rustc
