@@ -9,6 +9,7 @@
     pkgs.gnumake
     pkgs.jdk
     pkgs.lua
+    pkgs.luarocks
     pkgs.nodejs
     pkgs.php
     pkgs.python3
