@@ -16,6 +16,7 @@
   ];
 
   home.sessionPath = [
+    "${config.home.homeDirectory}/.dotfiles/bin"
     "${config.home.homeDirectory}/.local/bin"
   ];
 
