@@ -13,6 +13,8 @@
     pkgs.nodejs
     pkgs.php
     pkgs.python3
+    pkgs.rustPackages.clippy
+    pkgs.rustPackages.rustfmt
     pkgs.rustc
     pkgs.wl-clipboard
   ];
