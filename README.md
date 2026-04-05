@@ -19,11 +19,15 @@ Helper commands:
 ```bash
 rebuild
 update
+fmt
+lint
 ```
 
-`~/.nix-config/bin` is added to `PATH`, so `rebuild` and `update` are available as normal shell commands.
+`~/.nix-config/bin` is added to `PATH`, so `rebuild`, `update`, `fmt` and `lint` are available as normal shell commands.
 `rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
 `update` updates flake inputs and then runs `rebuild`.
+`fmt` formats the repository with Alejandra.
+`lint` runs `statix` and `deadnix`.
 
 Daily usage:
 
@@ -31,6 +35,16 @@ Daily usage:
 rebuild
 update
 home-manager switch --flake ~/.nix-config#javier-poremski
+fmt
+lint
+```
+
+Recommended local workflow before commit:
+
+```bash
+fmt
+lint
+nix flake check --no-build
 ```
 
 Bootstrap on a new machine:
@@ -99,6 +113,12 @@ Dev tooling:
 - the current set includes Node.js/npm, Lua 5.1, LuaRocks, Python, Go, Rust, PHP, Java, GCC and GNU Make
 - Neovim health support includes `pynvim` and `wl-clipboard`
 - GitHub workflows are available through `gh`
+
+CI:
+
+- GitHub Actions runs `nix flake check`
+- GitHub Actions runs `lint`
+- GitHub Actions runs `fmt --check`
 
 To add another host later:
 
