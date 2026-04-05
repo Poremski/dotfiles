@@ -8,7 +8,7 @@
     pkgs.go
     pkgs.gnumake
     pkgs.jdk
-    pkgs.lua
+    pkgs.lua5_1
     pkgs.luarocks
     pkgs.nodejs
     pkgs.php
