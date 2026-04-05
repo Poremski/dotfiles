@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.cargo
     pkgs.gcc
+    pkgs.gh
     pkgs.go
     pkgs.gnumake
     pkgs.jdk
