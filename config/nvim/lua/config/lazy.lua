@@ -30,4 +30,5 @@ require("lazy").setup("plugins", {
   change_detection = {
     notify = false,
   },
+  lockfile = vim.fn.stdpath("state") .. "/lazy-lock.json",
 })
