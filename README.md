@@ -11,7 +11,7 @@ Current naming:
 Main host target:
 
 ```bash
-sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
+sudo nixos-rebuild switch --flake ~/.nix-config#poremski
 ```
 
 Helper commands:
@@ -21,7 +21,7 @@ rebuild
 update
 ```
 
-`~/.dotfiles/bin` is added to `PATH`, so `rebuild` and `update` are available as normal shell commands.
+`~/.nix-config/bin` is added to `PATH`, so `rebuild` and `update` are available as normal shell commands.
 `rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
 `update` updates flake inputs and then runs `rebuild`.
 
@@ -30,7 +30,7 @@ Daily usage:
 ```bash
 rebuild
 update
-home-manager switch --flake ~/.dotfiles#javier-poremski
+home-manager switch --flake ~/.nix-config#javier-poremski
 ```
 
 Current structure:
@@ -61,8 +61,8 @@ Current structure:
 Available flake targets:
 
 ```bash
-sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
-home-manager switch --flake ~/.dotfiles#javier-poremski
+sudo nixos-rebuild switch --flake ~/.nix-config#poremski
+home-manager switch --flake ~/.nix-config#javier-poremski
 ```
 
 Editor integration:

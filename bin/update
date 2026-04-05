@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-flake_dir="${HOME}/.dotfiles"
+flake_dir="${HOME}/.nix-config"
 
 nix flake update --flake "${flake_dir}"
 "${flake_dir}/bin/rebuild"
