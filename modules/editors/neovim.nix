@@ -6,6 +6,9 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    extraPython3Packages = ps: [
+      ps.pynvim
+    ];
     extraPackages = with pkgs; [
       fd
       nixd

@@ -13,7 +13,6 @@
     pkgs.nodejs
     pkgs.php
     pkgs.python3
-    pkgs.python3Packages.pynvim
     pkgs.rustc
     pkgs.wl-clipboard
   ];
