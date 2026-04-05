@@ -1,6 +1,4 @@
-_:
-
-{
+_: {
   powerManagement.enable = true;
 
   services = {

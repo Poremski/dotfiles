@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./firefox.nix
     ./qbittorrent.nix

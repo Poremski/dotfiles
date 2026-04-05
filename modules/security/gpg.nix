@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.gpg = {
     enable = true;
     settings = {
@@ -20,8 +22,7 @@
         "ZIP"
         "Uncompressed"
       ];
-      default-preference-list =
-        "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
+      default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
       cert-digest-algo = "SHA512";
       s2k-digest-algo = "SHA512";
       s2k-cipher-algo = "AES256";

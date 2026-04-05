@@ -1,6 +1,8 @@
-{ lib, pkgs, ... }:
-
-let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   sshConfig = pkgs.writeText "ssh-config" ''
     Host github.com
       HostName github.com
@@ -15,9 +17,8 @@ let
       HashKnownHosts no
       UserKnownHostsFile ~/.ssh/known_hosts
   '';
-in
-{
-  home.activation.installSshConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+in {
+  home.activation.installSshConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
     $DRY_RUN_CMD mkdir -p "$HOME/.ssh"
     $DRY_RUN_CMD chmod 700 "$HOME/.ssh"
     $DRY_RUN_CMD rm -f "$HOME/.ssh/config"

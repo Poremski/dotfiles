@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;
@@ -37,7 +35,7 @@
       agent_servers = {
         Codex = {
           command = "codex-acp";
-          args = [ ];
+          args = [];
         };
       };
     };

@@ -1,11 +1,14 @@
-{ home-manager, hostMeta, pkgs, ... }:
-
-let
-  profileModules = builtins.map
-    (profile: ../../. + "/profiles/${profile}.nix")
-    (hostMeta.profiles or [ ]);
-in
 {
+  home-manager,
+  hostMeta,
+  pkgs,
+  ...
+}: let
+  profileModules =
+    builtins.map
+    (profile: ../../. + "/profiles/${profile}.nix")
+    (hostMeta.profiles or []);
+in {
   imports = [
     home-manager.nixosModules.home-manager
   ];
@@ -16,7 +19,7 @@ in
   users.users.${hostMeta.user} = {
     isNormalUser = true;
     home = "/home/${hostMeta.user}";
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     shell = pkgs.fish;
   };
 
@@ -30,11 +33,14 @@ in
       inherit hostMeta;
     };
     users.${hostMeta.user} = {
-      imports = [
-        (../../. + "/home/${hostMeta.user}/common.nix")
-      ] ++ profileModules ++ [
-        (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix")
-      ];
+      imports =
+        [
+          (../../. + "/home/${hostMeta.user}/common.nix")
+        ]
+        ++ profileModules
+        ++ [
+          (../../. + "/home/${hostMeta.user}/${hostMeta.name}.nix")
+        ];
     };
   };
 }
