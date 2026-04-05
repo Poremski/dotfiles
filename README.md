@@ -33,6 +33,26 @@ update
 home-manager switch --flake ~/.nix-config#javier-poremski
 ```
 
+Bootstrap on a new machine:
+
+```bash
+git clone git@github.com:Poremski/nix-config.git ~/.nix-config
+cd ~/.nix-config
+sudo nixos-rebuild switch --flake ~/.nix-config#poremski
+```
+
+If the hostname already matches a configured host, `rebuild` can be used after the first clone.
+
+Recovery and rollback:
+
+```bash
+sudo nixos-rebuild switch --rollback
+sudo nixos-rebuild boot --flake ~/.nix-config#poremski
+```
+
+Use `switch --rollback` to revert the currently active generation.
+Use `boot --flake` if you want the next boot to use the current flake without switching immediately.
+
 Current structure:
 
 - `lib/hosts.nix`: host metadata used to generate flake outputs
