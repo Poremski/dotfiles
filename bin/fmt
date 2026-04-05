@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+flake_dir="${HOME}/.nix-config"
+
+alejandra "${flake_dir}"

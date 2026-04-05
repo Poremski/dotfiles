@@ -2,7 +2,10 @@
 
 {
   home.packages = [
+    pkgs.alejandra
+    pkgs.deadnix
     pkgs.htop
+    pkgs.statix
     pkgs.tmux
   ];
 

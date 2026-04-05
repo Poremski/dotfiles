@@ -68,8 +68,11 @@
 
       devShells.${defaultSystem}.default = pkgs.mkShell {
         buildInputs = [
+          pkgs.alejandra
+          pkgs.deadnix
           pkgs.git
           pkgs.neovim
+          pkgs.statix
         ];
       };
     };

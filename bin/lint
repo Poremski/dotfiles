@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+flake_dir="${HOME}/.nix-config"
+
+statix check "${flake_dir}"
+deadnix "${flake_dir}"
