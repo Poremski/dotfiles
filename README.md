@@ -17,12 +17,21 @@ sudo nixos-rebuild switch --flake ~/.dotfiles#poremski
 Helper commands:
 
 ```bash
-~/.dotfiles/bin/rebuild
-~/.dotfiles/bin/update
+rebuild
+update
 ```
 
-`bin/rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
-`bin/update` updates flake inputs and then runs `bin/rebuild`.
+`~/.dotfiles/bin` is added to `PATH`, so `rebuild` and `update` are available as normal shell commands.
+`rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
+`update` updates flake inputs and then runs `rebuild`.
+
+Daily usage:
+
+```bash
+rebuild
+update
+home-manager switch --flake ~/.dotfiles#javier-poremski
+```
 
 Current structure:
 
@@ -61,6 +70,15 @@ Editor integration:
 - Zed is configured declaratively through Home Manager
 - Codex is exposed to Zed through `codex-acp`
 - the flake includes `llm-agents` as an input for that workflow
+- `nvim` is the default terminal editor via `EDITOR`, `VISUAL` and Git `core.editor`
+- `lazy.nvim` writes its lockfile to Neovim's state directory to stay compatible with Home Manager's read-only config symlink
+
+Dev tooling:
+
+- language runtimes and toolchains are installed through `modules/cli/dev.nix`
+- the current set includes Node.js/npm, Lua 5.1, LuaRocks, Python, Go, Rust, PHP, Java, GCC and GNU Make
+- Neovim health support includes `pynvim` and `wl-clipboard`
+- GitHub workflows are available through `gh`
 
 To add another host later:
 
