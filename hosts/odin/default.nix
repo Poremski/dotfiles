@@ -1,4 +1,8 @@
-{lib, nixos-hardware, ...}: {
+{
+  lib,
+  nixos-hardware,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen

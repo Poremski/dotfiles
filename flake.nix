@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "git+https://github.com/NixOS/nixos-hardware";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
