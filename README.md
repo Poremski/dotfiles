@@ -4,6 +4,10 @@
 
 Personal NixOS and Home Manager flake for my machines, shell environment, editors, and developer tooling.
 
+This is a personal NixOS configuration.
+It is designed around my own machines, hardware, workflows, and preferences, and is not intended to be a generic drop-in setup.
+Use at your own risk.
+
 ## Hosts
 
 Shared user:
