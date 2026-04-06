@@ -1,6 +1,7 @@
-{...}: {
+{nixos-hardware, ...}: {
   imports = [
     ./hardware-configuration.nix
+    nixos-hardware.nixosModules.dell-xps-13-9370
     ../../modules/nixos/base.nix
     ../../modules/nixos/system.nix
     ../../modules/nixos/1password.nix

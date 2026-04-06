@@ -9,12 +9,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    nixos-hardware,
     ...
   }: let
     hosts = import ./lib/hosts.nix;
@@ -47,7 +50,7 @@
       nixpkgs.lib.nixosSystem {
         inherit (meta) system;
         specialArgs = {
-          inherit home-manager;
+          inherit home-manager nixos-hardware;
           hostMeta =
             meta
             // {
