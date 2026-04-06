@@ -5,4 +5,6 @@
   };
 
   xdg.configFile."hypr".source = ../../config/hypr;
+
+  xdg.configFile."waybar".source = ../../config/waybar;
 }
