@@ -7,13 +7,13 @@ This repository manages NixOS and Home Manager through a single flake.
 Current naming:
 
 - user: `javier`
-- host: `poremski`
-- fqdn: `poremski.home.arpa`
+- host: `odin`
+- fqdn: `odin.home.arpa`
 
 Main host target:
 
 ```bash
-sudo nixos-rebuild switch --flake ~/.nix-config#poremski
+sudo nixos-rebuild switch --flake ~/.nix-config#odin
 ```
 
 Helper commands:
@@ -36,7 +36,7 @@ Daily usage:
 ```bash
 rebuild
 update
-home-manager switch --flake ~/.nix-config#javier-poremski
+home-manager switch --flake ~/.nix-config#javier-odin
 fmt
 lint
 ```
@@ -54,7 +54,7 @@ Bootstrap on a new machine:
 ```bash
 git clone git@github.com:Poremski/nix-config.git ~/.nix-config
 cd ~/.nix-config
-sudo nixos-rebuild switch --flake ~/.nix-config#poremski
+sudo nixos-rebuild switch --flake ~/.nix-config#odin
 ```
 
 If the hostname already matches a configured host, `rebuild` can be used after the first clone.
@@ -63,7 +63,7 @@ Recovery and rollback:
 
 ```bash
 sudo nixos-rebuild switch --rollback
-sudo nixos-rebuild boot --flake ~/.nix-config#poremski
+sudo nixos-rebuild boot --flake ~/.nix-config#odin
 ```
 
 Use `switch --rollback` to revert the currently active generation.
@@ -75,7 +75,7 @@ Current structure:
 - `profiles/base.nix`: common profile for most machines
 - `profiles/desktop.nix`: desktop-oriented profile layered on top of `base`
 - `home/javier/common.nix`: shared Home Manager config for the user
-- `home/javier/poremski.nix`: host-specific Home Manager config
+- `home/javier/odin.nix`: host-specific Home Manager config
 - `modules/apps`: desktop applications shared across hosts, such as Firefox
 - `modules/cli`: CLI tools and terminal programs shared across hosts
 - `modules/security`: shared security-related tooling such as GPG agent integration
@@ -91,14 +91,14 @@ Current structure:
 - `modules/nixos/laptop.nix`: laptop-oriented services such as power, fwupd, bluetooth and thunderbolt
 - `modules/nixos/printing.nix`: CUPS, mDNS discovery and printer drivers
 - `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
-- `hosts/poremski/default.nix`: NixOS host config for `poremski`
-- `hosts/poremski/hardware-configuration.nix`: host-specific boot, disk and filesystem layout
+- `hosts/odin/default.nix`: NixOS host config for `odin`
+- `hosts/odin/hardware-configuration.nix`: host-specific boot, disk and filesystem layout
 
 Available flake targets:
 
 ```bash
-sudo nixos-rebuild switch --flake ~/.nix-config#poremski
-home-manager switch --flake ~/.nix-config#javier-poremski
+sudo nixos-rebuild switch --flake ~/.nix-config#odin
+home-manager switch --flake ~/.nix-config#javier-odin
 ```
 
 Editor integration:

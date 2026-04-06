@@ -1,5 +1,5 @@
 {
-  poremski = {
+  odin = {
     user = "javier";
     domain = "home.arpa";
     profiles = ["desktop"];
