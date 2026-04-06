@@ -13,6 +13,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
     grim
     hypridle
     hyprlock

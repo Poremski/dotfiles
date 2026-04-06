@@ -3,4 +3,6 @@
     DOTFILES_HOST = hostMeta.name;
     DOTFILES_FQDN = "${hostMeta.name}.${hostMeta.domain}";
   };
+
+  xdg.configFile."hypr".source = ../../config/hypr;
 }
