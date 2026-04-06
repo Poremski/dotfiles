@@ -9,6 +9,7 @@ Current naming:
 - user: `javier`
 - host: `odin`
 - fqdn: `odin.home.arpa`
+- next host: `thor.home.arpa`
 
 Main host target:
 
@@ -91,6 +92,7 @@ Current structure:
 - `modules/nixos/laptop.nix`: laptop-oriented services such as power, fwupd, bluetooth and thunderbolt
 - `modules/nixos/printing.nix`: CUPS, mDNS discovery and printer drivers
 - `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
+- `modules/nixos/desktop/hyprland.nix`: Hyprland desktop, greetd and Wayland portal setup
 - `hosts/odin/default.nix`: NixOS host config for `odin`
 - `hosts/odin/hardware-configuration.nix`: host-specific boot, disk and filesystem layout
 
@@ -98,7 +100,9 @@ Available flake targets:
 
 ```bash
 sudo nixos-rebuild switch --flake ~/.nix-config#odin
+sudo nixos-rebuild switch --flake ~/.nix-config#thor
 home-manager switch --flake ~/.nix-config#javier-odin
+home-manager switch --flake ~/.nix-config#javier-thor
 ```
 
 Editor integration:
@@ -127,6 +131,7 @@ To add another host later:
 1. Add a new entry in `lib/hosts.nix`
 2. Create `home/<user>/<host>.nix`
 3. Create `hosts/<host>/default.nix` for that machine's NixOS configuration
+4. Generate `hosts/<host>/hardware-configuration.nix` on the target machine
 
 Profiles let multiple hosts share the same role without duplicating imports.
 The shared NixOS base does the same for system-level Home Manager wiring.
