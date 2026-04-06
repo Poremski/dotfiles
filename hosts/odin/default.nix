@@ -1,6 +1,7 @@
-{lib, ...}: {
+{lib, nixos-hardware, ...}: {
   imports = [
     ./hardware-configuration.nix
+    nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     ../../modules/nixos/base.nix
     ../../modules/nixos/system.nix
     ../../modules/nixos/1password.nix
