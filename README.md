@@ -1,6 +1,10 @@
 # Nix configuration
 
 [![CI](https://github.com/Poremski/nix-config/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Poremski/nix-config/actions/workflows/ci.yml)
+[![NixOS](https://img.shields.io/badge/NixOS-5277C3?logo=nixos&logoColor=white)](https://nixos.org/)
+[![Home%20Manager](https://img.shields.io/badge/Home%20Manager-5E81AC)](https://github.com/nix-community/home-manager)
+[![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=white)](https://neovim.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Personal NixOS and Home Manager flake for my machines, shell environment, editors, and developer tooling.
 
