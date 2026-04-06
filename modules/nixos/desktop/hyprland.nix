@@ -16,6 +16,7 @@
     grim
     hypridle
     hyprlock
+    kitty
     slurp
     waybar
     wlogout
