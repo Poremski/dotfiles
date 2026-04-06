@@ -36,17 +36,25 @@ lint
 
 What they do:
 
-- `rebuild`: run `nix flake check` and rebuild the current host
-- `sync`: run `git pull --ff-only` and then `rebuild`
-- `update`: update flake inputs and then `rebuild`
+- `rebuild`: rebuild the current host
+- `sync`: run `git pull --ff-only` and then `rebuild` the current host
+- `update`: update flake inputs and then `rebuild` the current host
 - `fmt`: format the repo with Alejandra
 - `lint`: run `statix` and `deadnix`
 
-When you need to force a specific host during a hostname transition, `rebuild` also accepts an explicit host argument:
+When you need to force a specific host, `rebuild` also accepts an explicit host argument:
 
 ```bash
 rebuild odin
 rebuild thor
+```
+
+Use `--full-check` when you explicitly want to run `nix flake check` for all flake outputs before rebuilding:
+
+```bash
+rebuild --full-check
+sync --full-check
+update --full-check
 ```
 
 ## Flake targets

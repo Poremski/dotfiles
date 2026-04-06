@@ -2,10 +2,46 @@
 
 set -euo pipefail
 
+usage() {
+  cat <<'USAGE'
+Usage: rebuild [host] [--full-check]
+
+Options:
+  --full-check  Run nix flake check for all flake outputs before rebuilding.
+  -h, --help    Show this help text.
+USAGE
+}
+
 script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 flake_dir="$(cd -- "${script_dir}/.." && pwd)"
-requested_host="${1:-}"
 hostname_short="$(hostname -s)"
+requested_host=""
+full_check=0
+
+for arg in "$@"; do
+  case "${arg}" in
+    --full-check)
+      full_check=1
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -*)
+      printf 'Unknown option: %s\n\n' "${arg}" >&2
+      usage >&2
+      exit 1
+      ;;
+    *)
+      if [[ -n "${requested_host}" ]]; then
+        printf 'Unexpected extra argument: %s\n\n' "${arg}" >&2
+        usage >&2
+        exit 1
+      fi
+      requested_host="${arg}"
+      ;;
+  esac
+done
 
 mapfile -t flake_hosts < <(find "${flake_dir}/hosts" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort)
 
@@ -49,10 +85,13 @@ if [[ -z "${host}" ]]; then
   printf 'Hostname %q does not match any flake host. Available hosts: %s\n' \
     "${hostname_short}" \
     "$(printf '%s ' "${flake_hosts[@]}")" >&2
-  printf 'Set the system hostname to match a flake host, or update %s to select one explicitly.\n' \
+  printf 'Set the system hostname to match a flake host, or pass one explicitly to %s.\n' \
     "${BASH_SOURCE[0]}" >&2
   exit 1
 fi
 
-nix flake check "${flake_dir}"
+if ((full_check)); then
+  nix flake check "${flake_dir}"
+fi
+
 sudo nixos-rebuild switch --flake "${flake_dir}#${host}"
