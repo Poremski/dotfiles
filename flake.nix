@@ -79,6 +79,7 @@
         pkgs.alejandra
         pkgs.deadnix
         pkgs.git
+        pkgs.markdownlint-cli2
         pkgs.neovim
         pkgs.statix
       ];

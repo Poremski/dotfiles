@@ -47,6 +47,24 @@ jobs:
       - name: Check formatting
         run: nix develop -c ./bin/fmt --check
 
+  markdownlint:
+    runs-on: self-hosted
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+        with:
+          determinate: false
+
+      - name: Lint Markdown
+        run: nix develop -c markdownlint-cli2 "**/*.md"
+
   lint:
     runs-on: self-hosted
     permissions:
