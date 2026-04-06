@@ -21,13 +21,15 @@ Helper commands:
 
 ```bash
 rebuild
+sync
 update
 fmt
 lint
 ```
 
-`~/.nix-config/bin` is added to `PATH`, so `rebuild`, `update`, `fmt` and `lint` are available as normal shell commands.
+`~/.nix-config/bin` is added to `PATH`, so `rebuild`, `sync`, `update`, `fmt` and `lint` are available as normal shell commands.
 `rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
+`sync` runs `git pull --ff-only` and then `rebuild`.
 `update` updates flake inputs and then runs `rebuild`.
 `fmt` formats the repository with Alejandra.
 `lint` runs `statix` and `deadnix`.
