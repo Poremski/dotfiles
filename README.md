@@ -2,22 +2,23 @@
 
 [![CI](https://github.com/Poremski/nix-config/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/Poremski/nix-config/actions/workflows/ci.yml)
 
-This repository manages NixOS and Home Manager through a single flake.
+Personal NixOS and Home Manager flake for my machines, shell environment, editors, and developer tooling.
 
-Current naming:
+## Hosts
 
-- user: `javier`
-- host: `odin`
-- fqdn: `odin.home.arpa`
-- next host: `thor.home.arpa`
+Shared user:
 
-Main host target:
+- `javier`
 
-```bash
-sudo nixos-rebuild switch --flake ~/.nix-config#odin
-```
+Configured hosts:
 
-Helper commands:
+- `odin.home.arpa`: Lenovo ThinkPad X1 Carbon 7th Gen, Plasma
+- `thor.home.arpa`: Dell XPS 13 9370, Hyprland
+
+Both hosts share the same base user configuration, profiles, editors, shell setup, and most CLI/dev tooling.
+Machine-specific hardware is defined in each host's `hardware-configuration.nix`, while `nixos-hardware` adds model-specific quirks for the ThinkPad and XPS.
+
+## Common commands
 
 ```bash
 rebuild
@@ -27,32 +28,36 @@ fmt
 lint
 ```
 
-`~/.nix-config/bin` is added to `PATH`, so `rebuild`, `sync`, `update`, `fmt` and `lint` are available as normal shell commands.
-`rebuild` runs `nix flake check` and rebuilds the host that matches the current hostname.
-`sync` runs `git pull --ff-only` and then `rebuild`.
-`update` updates flake inputs and then runs `rebuild`.
-`fmt` formats the repository with Alejandra.
-`lint` runs `statix` and `deadnix`.
+`~/.nix-config/bin` is added to `PATH`, so these commands are available directly.
 
-Daily usage:
+What they do:
+
+- `rebuild`: run `nix flake check` and rebuild the current host
+- `sync`: run `git pull --ff-only` and then `rebuild`
+- `update`: update flake inputs and then `rebuild`
+- `fmt`: format the repo with Alejandra
+- `lint`: run `statix` and `deadnix`
+
+When you need to force a specific host during a hostname transition, `rebuild` also accepts an explicit host argument:
 
 ```bash
-rebuild
-update
+rebuild odin
+rebuild thor
+```
+
+## Flake targets
+
+```bash
+sudo nixos-rebuild switch --flake ~/.nix-config#odin
+sudo nixos-rebuild switch --flake ~/.nix-config#thor
+
 home-manager switch --flake ~/.nix-config#javier-odin
-fmt
-lint
+home-manager switch --flake ~/.nix-config#javier-thor
 ```
 
-Recommended local workflow before commit:
+## Bootstrap
 
-```bash
-fmt
-lint
-nix flake check --no-build
-```
-
-Bootstrap on a new machine:
+Clone the repo and switch to the target host:
 
 ```bash
 git clone git@github.com:Poremski/nix-config.git ~/.nix-config
@@ -60,80 +65,64 @@ cd ~/.nix-config
 sudo nixos-rebuild switch --flake ~/.nix-config#odin
 ```
 
-If the hostname already matches a configured host, `rebuild` can be used after the first clone.
+or:
 
-Recovery and rollback:
+```bash
+sudo nixos-rebuild switch --flake ~/.nix-config#thor
+```
+
+## Recovery
 
 ```bash
 sudo nixos-rebuild switch --rollback
 sudo nixos-rebuild boot --flake ~/.nix-config#odin
 ```
 
-Use `switch --rollback` to revert the currently active generation.
+Use `switch --rollback` to revert the active generation.
 Use `boot --flake` if you want the next boot to use the current flake without switching immediately.
 
-Current structure:
+## Structure
 
+- `flake.nix`: flake inputs and outputs
 - `lib/hosts.nix`: host metadata used to generate flake outputs
-- `profiles/base.nix`: common profile for most machines
-- `profiles/desktop.nix`: desktop-oriented profile layered on top of `base`
-- `home/javier/common.nix`: shared Home Manager config for the user
-- `home/javier/odin.nix`: host-specific Home Manager config
-- `modules/apps`: desktop applications shared across hosts, such as Firefox
-- `modules/cli`: CLI tools and terminal programs shared across hosts
-- `modules/security`: shared security-related tooling such as GPG agent integration
-- `modules/shell`: shell configuration shared across hosts
-- `modules/editors`: editor configuration shared across hosts
-- `bin/rebuild`: host-aware rebuild helper that runs `nix flake check` before switching
-- `bin/update`: flake update helper that rebuilds after updating inputs
-- `modules/nixos/base.nix`: shared NixOS base that wires user, profiles and Home Manager together
-- `modules/nixos/system.nix`: NixOS-wide defaults such as Nix settings and core packages
-- `modules/nixos/locale.nix`: timezone, locale and console keymap
-- `modules/nixos/networking.nix`: baseline networking and SSH settings
-- `modules/nixos/audio.nix`: PipeWire and related audio services
-- `modules/nixos/laptop.nix`: laptop-oriented services such as power, fwupd, bluetooth and thunderbolt
-- `modules/nixos/printing.nix`: CUPS, mDNS discovery and printer drivers
-- `modules/nixos/desktop/plasma.nix`: Plasma desktop, SDDM and keyboard layout
-- `modules/nixos/desktop/hyprland.nix`: Hyprland desktop, greetd and Wayland portal setup
-- `hosts/odin/default.nix`: NixOS host config for `odin`
-- `hosts/odin/hardware-configuration.nix`: host-specific boot, disk and filesystem layout
+- `hosts/<host>/`: host-specific NixOS configuration and hardware layout
+- `home/javier/`: shared and host-specific Home Manager config
+- `profiles/`: reusable bundles layered onto hosts
+- `modules/nixos/`: shared NixOS modules
+- `modules/cli/`: CLI and development tooling
+- `modules/shell/`: shell configuration
+- `modules/editors/`: editor configuration
+- `modules/apps/`: GUI application bundles
+- `modules/security/`: security-related modules
+- `bin/`: helper commands for rebuild, sync, update, fmt, and lint
 
-Available flake targets:
+## Desktop notes
 
-```bash
-sudo nixos-rebuild switch --flake ~/.nix-config#odin
-sudo nixos-rebuild switch --flake ~/.nix-config#thor
-home-manager switch --flake ~/.nix-config#javier-odin
-home-manager switch --flake ~/.nix-config#javier-thor
-```
+- `odin` uses Plasma via `modules/nixos/desktop/plasma.nix`
+- `thor` uses Hyprland via `modules/nixos/desktop/hyprland.nix`
+- `odin` imports `nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen`
+- `thor` imports `nixos-hardware.nixosModules.dell-xps-13-9370`
 
-Editor integration:
+## Editors and tooling
 
+- `nvim` is the default terminal editor via `EDITOR`, `VISUAL`, and Git `core.editor`
+- Neovim is configured declaratively and includes LSP support for Nix, Lua, Python, Go, Rust, PHP, Java, TypeScript, HTML, JSON, and TOML
 - Zed is configured declaratively through Home Manager
-- Codex is exposed to Zed through `codex-acp`
-- the flake includes `llm-agents` as an input for that workflow
-- `nvim` is the default terminal editor via `EDITOR`, `VISUAL` and Git `core.editor`
-- `lazy.nvim` writes its lockfile to Neovim's state directory to stay compatible with Home Manager's read-only config symlink
+- `codex-acp` is available for the Zed/Codex workflow
+- language/tooling support includes Node.js, Lua 5.1, LuaRocks, Python, Go, Rust, PHP, Java, GCC, GNU Make, `jq`, `yq`, `tree`, `shellcheck`, `shfmt`, `prettier`, `ruff`, and `black`
 
-Dev tooling:
+## CI
 
-- language runtimes and toolchains are installed through `modules/cli/dev.nix`
-- the current set includes Node.js/npm, Lua 5.1, LuaRocks, Python, Go, Rust, PHP, Java, GCC and GNU Make
-- Neovim health support includes `pynvim` and `wl-clipboard`
-- GitHub workflows are available through `gh`
+GitHub Actions runs:
 
-CI:
+- `nix flake check`
+- `lint`
+- `fmt --check`
 
-- GitHub Actions runs `nix flake check`
-- GitHub Actions runs `lint`
-- GitHub Actions runs `fmt --check`
+## Adding a host
 
-To add another host later:
-
-1. Add a new entry in `lib/hosts.nix`
-2. Create `home/<user>/<host>.nix`
-3. Create `hosts/<host>/default.nix` for that machine's NixOS configuration
-4. Generate `hosts/<host>/hardware-configuration.nix` on the target machine
-
-Profiles let multiple hosts share the same role without duplicating imports.
-The shared NixOS base does the same for system-level Home Manager wiring.
+1. Add the host to `lib/hosts.nix`
+2. Create `hosts/<host>/default.nix`
+3. Generate or add `hosts/<host>/hardware-configuration.nix`
+4. Create `home/javier/<host>.nix`
+5. Rebuild with the new flake target
