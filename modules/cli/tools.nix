@@ -2,6 +2,7 @@
   home.packages = [
     pkgs.alejandra
     pkgs.deadnix
+    pkgs.evtest
     pkgs.htop
     pkgs.jq
     pkgs.shellcheck
