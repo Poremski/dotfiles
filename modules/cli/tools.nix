@@ -10,6 +10,7 @@
     pkgs.statix
     pkgs.tmux
     pkgs.tree
+    pkgs.wireguard-tools
     pkgs.yq-go
   ];
 
