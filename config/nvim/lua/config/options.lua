@@ -31,6 +31,8 @@ opt.updatetime = 250
 opt.timeoutlen = 300
 opt.completeopt = { "menu", "menuone", "noselect" }
 
+opt.spelllang = { "en_us", "en_gb", "sv", "pl", "es" }
+
 opt.list = true
 opt.listchars = {
   tab = "> ",
